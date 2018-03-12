@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/cdlewis/cheeky-http.svg?branch=master)](https://travis-ci.org/cdlewis/cheeky-http)
-
-# Cheeky HTTP
+# Cheeky HTTP [![Build Status](https://travis-ci.org/cdlewis/cheeky-http.svg?branch=master)](https://travis-ci.org/cdlewis/cheeky-http)
 
 A simple, performant Node HTTP server.
 
