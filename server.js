@@ -8,6 +8,7 @@ class Server {
     const { method, url } = request;
 
     const requestProps = {
+      body: {},
       params: {}
     };
 
@@ -22,9 +23,8 @@ class Server {
     }
 
     // wait until request body has been parsed
-    let body = null;
     if (method === "POST" || method === "PUT") {
-      let body = await parseRequestBody(request);
+      requestProps.body = await parseRequestBody(request);
     }
 
     let handler = null;
@@ -49,7 +49,6 @@ class Server {
 
     try {
       const result = await resolveHandler(handler(requestProps));
-
       if (typeof result === "object") {
         response.writeHead(200, {
           "content-type": "application/json"
@@ -61,7 +60,7 @@ class Server {
 
       response.end();
     } catch (err) {
-      console.error(`${method} ${url}: ${err}`);
+      this.logger.error(`${method} ${url}: ${err}`);
       response.statusCode = 500;
       response.statusMessage = "Internal server error";
       response.end();
@@ -73,11 +72,12 @@ class Server {
     this.port = options.port || 3000;
     this.middlewares = options.middlewares || [];
     this.routes = setupRoutes(routes);
+    this.logger = options.logger || console;
 
     this.server = http
       .createServer(this.handleConnections.bind(this))
       .listen(this.port, () => {
-        console.log(`Started server on http://localhost:${this.port}`);
+        this.logger.log(`Started server on http://localhost:${this.port}`);
       });
   }
 

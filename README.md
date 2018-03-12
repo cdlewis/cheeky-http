@@ -5,8 +5,8 @@ A simple, performant Node HTTP server.
 ## Getting started
 
 ```js
-import Server from 'cheeky-http';
-new Server({'/': () => 'hello world'});
+import Server from "cheeky-http";
+new Server({ "/": () => "hello world" });
 ```
 
 ## Features
@@ -16,21 +16,27 @@ new Server({'/': () => 'hello world'});
 cheeky-http supports Express-style route parameters.
 
 ```js
-import Server from 'cheeky-http';
-new Server({'/name': req => req.params.name});
+import Server from "cheeky-http";
+new Server({ "/name": req => req.params.name });
 ```
 
 ### Automatically parse/serialise JSON in request/response
 
-(TBD)
+The request payload is automtically parsed when the content header is JSON. When a handler
+returns an object, it is automatically serialised.
+
+```js
+const Server = require("cheeky-http");
+new Server({ "/": req => req.body });
+```
 
 ### Handle asynchronous handlers
 
 If a handler returns a promise, cheeky-http will resolve it before responding.
 
 ```js
-import Server from 'cheeky-http';
-new Server({'/': () => Promise.resolve('response')});
+import Server from "cheeky-http";
+new Server({ "/": () => Promise.resolve("response") });
 ```
 
 ### Middleware
@@ -40,21 +46,19 @@ Unlike other Node HTTP frameworks, all middlewares are evaluated at once. The co
 will be terminated if a single middleware rejects its promise.
 
 ```js
-import Server from 'cheeky-http';
+import Server from "cheeky-http";
 
-const authMiddleware = (request, response) => new Promise((resolve, reject) => {
-    if (!request.headers['token'] === 'fake-token') {
-        response.writeStatus(401);
-        reject();
+const authMiddleware = (request, response) =>
+  new Promise((resolve, reject) => {
+    if (!request.headers["token"] === "fake-token") {
+      response.writeStatus(401);
+      reject();
     }
 
     resolve();
-});
+  });
 
-new Server(
-    {'/': () => 'hello world'},
-    {middlewares: [authMiddleware]}
-)
+new Server({ "/": () => "hello world" }, { middlewares: [authMiddleware] });
 ```
 
 ## Benchmarks
