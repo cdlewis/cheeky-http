@@ -4,7 +4,8 @@
   "description": "A fast, simple Node HTTP server",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "precommit": "lint-staged"
   },
   "author": "Chris Lewis",
   "license": "MIT",
@@ -12,10 +13,16 @@
     "node": ">= 9.8.0"
   },
   "devDependencies": {
+    "husky": "^0.14.3",
     "jest": "^22.4.2",
-    "node-fetch": "^2.1.1"
+    "lint-staged": "^7.0.0",
+    "node-fetch": "^2.1.1",
+    "prettier": "^1.11.1"
   },
   "jest": {
     "verbose": true
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": ["prettier --write", "git add"]
   }
 }
