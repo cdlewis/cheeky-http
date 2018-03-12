@@ -4,9 +4,9 @@ A simple, performant Node HTTP server.
 
 ## Getting started
 
-```
-import Server from 'simple-http'
-new Server({/': () => 'hello world'})
+```js
+import Server from 'simple-http';
+new Server({'/': () => 'hello world'});
 ```
 
 ## Features
@@ -15,7 +15,7 @@ new Server({/': () => 'hello world'})
 
 simple-http supports Express-style route parameters.
 
-```
+```js
 import Server from 'simple-http';
 new Server({'/name': req => req.params.name});
 ```
@@ -28,7 +28,7 @@ new Server({'/name': req => req.params.name});
 
 If a handler returns a promise, simple-http will resolve it before responding.
 
-```
+```js
 import Server from 'simple-http';
 new Server({'/': () => Promise.resolve('response')});
 ```
@@ -39,7 +39,7 @@ Route middleware can be added to the options object when creating a new server.
 Unlike other Node HTTP frameworks, all middlewares are evaluated at once. The connection
 will be terminated if a single middleware rejects its promise.
 
-```
+```js
 import Server from 'simple-http';
 
 const authMiddleware = (request, response) => new Promise((resolve, reject) => {
