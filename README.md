@@ -5,7 +5,7 @@ A simple, performant Node HTTP server.
 ## Getting started
 
 ```js
-import Server from 'cheeky-http'
+const Server = require('cheeky-http')
 new Server({'/': () => 'hello world'})
 ```
 
@@ -16,7 +16,7 @@ new Server({'/': () => 'hello world'})
 cheeky-http supports Express-style route parameters.
 
 ```js
-import Server from 'cheeky-http'
+const Server = require('cheeky-http')
 new Server({'/name': req => req.params.name})
 ```
 
@@ -35,7 +35,7 @@ new Server({'/': req => req.body})
 If a handler returns a promise, cheeky-http will resolve it before responding.
 
 ```js
-import Server from 'cheeky-http'
+const Server = require('cheeky-http')
 new Server({'/': () => Promise.resolve('response')})
 ```
 
@@ -46,7 +46,7 @@ Unlike other Node HTTP frameworks, all middlewares are evaluated at once. The co
 will be terminated if a single middleware rejects its promise.
 
 ```js
-import Server from 'cheeky-http'
+const Server = require('cheeky-http')
 
 const authMiddleware = (request, response) =>
   new Promise((resolve, reject) => {
