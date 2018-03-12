@@ -1,0 +1,22 @@
+{
+  "name": "simple-http",
+  "version": "1.0.0",
+  "description": "A fast, simple Node HTTP server",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Chris Lewis",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 9.8.0"
+  },
+  "devDependencies": {
+    "jest": "^22.4.2",
+    "node-fetch": "^2.1.1"
+  },
+  "jest": {
+    "verbose": true,
+    "testMatch": ["**/__tests__/**/*.mjs"]
+  }
+}
