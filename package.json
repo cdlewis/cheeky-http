@@ -1,5 +1,5 @@
 {
-  "name": "simple-http",
+  "name": "cheeky-http",
   "version": "1.0.0",
   "description": "A fast, simple Node HTTP server",
   "main": "index.js",
