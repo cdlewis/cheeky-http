@@ -1,17 +1,17 @@
-const Server = require("../server");
+const Server = require('../server')
 
 const server = new Server(
   {
-    "/": () => "hello world"
+    '/': () => 'hello world',
   },
   {
     middlewares: [
       (request, response) =>
         new Promise((resolve, reject) => {
           setTimeout(() => {
-            resolve();
-          }, 2000);
-        })
-    ]
+            resolve()
+          }, 2000)
+        }),
+    ],
   }
-);
+)
