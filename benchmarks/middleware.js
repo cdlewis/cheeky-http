@@ -14,4 +14,4 @@ for (let i = 0; i < n; i++) {
   middlewares.push(testMiddleware)
 }
 
-new Server({'/': () => 'hi'}, {middlewares: middlewares})
+new Server({'/': () => 'hi'}, {middlewares})

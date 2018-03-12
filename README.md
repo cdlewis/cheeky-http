@@ -51,11 +51,11 @@ import Server from 'cheeky-http'
 const authMiddleware = (request, response) =>
   new Promise((resolve, reject) => {
     if (!request.headers['token'] === 'fake-token') {
-      response.writeStatus(401)
+      response.statusCode = 401
       reject()
+    } else {
+      resolve()
     }
-
-    resolve()
   })
 
 new Server({'/': () => 'hello world'}, {middlewares: [authMiddleware]})

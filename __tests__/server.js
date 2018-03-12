@@ -44,3 +44,19 @@ test('route with parsed request body', async () => {
 
   await server.close()
 })
+
+test('route with middleware', async () => {
+  const middlewares = [
+    (request, response) =>
+      new Promise((resolve, reject) => {
+        response.statusCode = 401
+        reject()
+      }),
+  ]
+  const server = new Server({'/': () => true}, {middlewares, logger})
+
+  const response = await fetch('http://localhost:3000')
+  expect(response.status).toEqual(401)
+
+  await server.close()
+})
