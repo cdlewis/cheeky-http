@@ -1,11 +1,11 @@
-# Simple HTTP
+# Cheeky HTTP
 
 A simple, performant Node HTTP server.
 
 ## Getting started
 
 ```js
-import Server from 'simple-http';
+import Server from 'cheeky-http';
 new Server({'/': () => 'hello world'});
 ```
 
@@ -13,10 +13,10 @@ new Server({'/': () => 'hello world'});
 
 ### Route parameters
 
-simple-http supports Express-style route parameters.
+cheeky-http supports Express-style route parameters.
 
 ```js
-import Server from 'simple-http';
+import Server from 'cheeky-http';
 new Server({'/name': req => req.params.name});
 ```
 
@@ -26,10 +26,10 @@ new Server({'/name': req => req.params.name});
 
 ### Handle asynchronous handlers
 
-If a handler returns a promise, simple-http will resolve it before responding.
+If a handler returns a promise, cheeky-http will resolve it before responding.
 
 ```js
-import Server from 'simple-http';
+import Server from 'cheeky-http';
 new Server({'/': () => Promise.resolve('response')});
 ```
 
@@ -40,7 +40,7 @@ Unlike other Node HTTP frameworks, all middlewares are evaluated at once. The co
 will be terminated if a single middleware rejects its promise.
 
 ```js
-import Server from 'simple-http';
+import Server from 'cheeky-http';
 
 const authMiddleware = (request, response) => new Promise((resolve, reject) => {
     if (!request.headers['token'] === 'fake-token') {
@@ -59,4 +59,4 @@ new Server(
 
 ## Benchmarks
 
-![middleware requests per second](https://raw.githubusercontent.com/cdlewis/simple-http/master/images/middleware-performance.png)
+![middleware requests per second](https://raw.githubusercontent.com/cdlewis/cheeky-http/master/images/middleware-performance.png)
