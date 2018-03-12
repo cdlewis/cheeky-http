@@ -41,9 +41,15 @@ new Server({'/': () => Promise.resolve('response')})
 
 ### Middleware
 
-Route middleware can be added to the options object when creating a new server.
-Unlike other Node HTTP frameworks, all middlewares are evaluated at once. The connection
-will be terminated if a single middleware rejects its promise.
+When creating a new server you can pass in an array of middleware functions.
+Middleware has access to the underlying HTTP request and response objects and
+runs before the route handler.  
+
+Unlike other frameworks such as Express, all middlewares are evaluated at once.
+The connection will be terminated if a single middleware rejects its promise.
+This allows for better performance but also breaks patterns that rely on sequentially
+evaluating middleware and passing around state on the request object. Because
+there's no guaranteed execution order, middleware should be idempotent.
 
 ```js
 const Server = require('cheeky-http')
