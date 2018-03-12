@@ -1,22 +1,15 @@
-import http from 'http';
-import parseRequestBody from './lib/parse-request-body';
-import resolveHandler from './lib/resolve-handler';
-import setupRoutes from './lib/setup-routes';
+const http = require('http');
+const parseRequestBody = require('./lib/parse-request-body');
+const resolveHandler = require('./lib/resolve-handler');
+const setupRoutes = require('./lib/setup-routes');
 
-export default class Server {
+class Server {
     async handleConnections(request, response) {
-        let closed = false;
-        response.on('end', () => {
-            closed = true
-            console.warn('response is closed');
-        });
-
         const {method, url} = request;
 
         const requestProps = {
             params: {}
         };
-        let handler = null;
 
         // Run all middlewares, a single rejection will terminate the request
         try {
@@ -34,6 +27,7 @@ export default class Server {
             let body = await parseRequestBody(request);
         }
  
+        let handler = null;
         for (const route of this.routes) {
             const search = url.match(route.pattern);
             if (search) {
@@ -92,19 +86,4 @@ export default class Server {
     }
 }
 
-
-const server = new Server(
-    {
-        '/': () => 'hello world'
-    },
-    {
-        middlewares: [
-            (request, response) => new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    resolve();
-                }, 2000);
-            })
-        ]
-    }
-);
-
+module.exports = Server;

@@ -16,7 +16,6 @@
     "node-fetch": "^2.1.1"
   },
   "jest": {
-    "verbose": true,
-    "testMatch": ["**/__tests__/**/*.mjs"]
+    "verbose": true
   }
 }

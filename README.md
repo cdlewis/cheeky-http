@@ -4,19 +4,34 @@ A simple, performant Node HTTP server.
 
 ## Getting started
 
-```js
+```
 import Server from 'simple-http'
-
 new Server({/': () => 'hello world'})
 ```
 
 ## Features
 
-Route parameters:
+### Route parameters
 
-Automatically parse/serialise JSON in request/response:
+simple-http supports Express-style route parameters.
 
-Handle asyncronous handlers:
+```
+import Server from 'simple-http';
+new Server({'/name': req => req.params.name});
+```
+
+### Automatically parse/serialise JSON in request/response
+
+(TBD)
+
+### Handle asynchronous handlers
+
+If a handler returns a promise, simple-http will resolve it before responding.
+
+```
+import Server from 'simple-http';
+new Server({'/': () => Promise.resolve('response')});
+```
 
 ### Middleware
 
@@ -24,7 +39,7 @@ Route middleware can be added to the options object when creating a new server.
 Unlike other Node HTTP frameworks, all middlewares are evaluated at once. The connection
 will be terminated if a single middleware rejects its promise.
 
-```js
+```
 import Server from 'simple-http';
 
 const authMiddleware = (request, response) => new Promise((resolve, reject) => {
