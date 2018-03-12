@@ -58,3 +58,5 @@ new Server(
 ```
 
 ## Benchmarks
+
+![middleware requests per second](https://raw.githubusercontent.com/cdlewis/simple-http/master/images/middleware-performance.png)
