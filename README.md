@@ -13,11 +13,9 @@ new Server({'/': () => 'hello world'})
 
 ### Route parameters
 
-cheeky-http supports Express-style route parameters.
-
 ```js
 const Server = require('cheeky-http')
-new Server({'/name': req => req.params.name})
+new Server({'/person/:name': req => `Hello ${req.params.name}!`)
 ```
 
 ### Automatically parse/serialise JSON in request/response
@@ -32,7 +30,7 @@ new Server({'/': req => req.body})
 
 ### Handle asynchronous handlers
 
-If a handler returns a promise, cheeky-http will resolve it before responding.
+If a handler returns a promise, it's resolved value will become the response.
 
 ```js
 const Server = require('cheeky-http')
