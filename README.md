@@ -67,4 +67,6 @@ new Server({'/': () => 'hello world'}, {middlewares: [authMiddleware]})
 
 ## Benchmarks
 
+Benchmarks run using Node 9.8.0 on a Late 2013 13" MacBook Pro with 2.6 GHz Intel Core i5 and 16gb RAM. More information can be found in the `benchmarks` folder.
+
 ![middleware requests per second](https://raw.githubusercontent.com/cdlewis/cheeky-http/master/images/middleware-performance.png)
