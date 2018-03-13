@@ -41,7 +41,7 @@ new Server({'/': () => Promise.resolve('response')})
 
 When creating a new server you can pass in an array of middleware functions.
 Middleware has access to the underlying HTTP request and response objects and
-runs before the route handler.  
+runs before the route handler.
 
 Unlike other frameworks such as Express, all middlewares are evaluated at once.
 The connection will be terminated if a single middleware rejects its promise.
@@ -70,3 +70,5 @@ new Server({'/': () => 'hello world'}, {middlewares: [authMiddleware]})
 Benchmarks run using Node 9.8.0 on a Late 2013 13" MacBook Pro with 2.6 GHz Intel Core i5 and 16gb RAM. More information can be found in the `benchmarks` folder.
 
 ![middleware requests per second](https://raw.githubusercontent.com/cdlewis/cheeky-http/master/images/middleware-performance.png)
+
+![route requests per second](https://raw.githubusercontent.com/cdlewis/cheeky-http/master/images/route-performance.png)
