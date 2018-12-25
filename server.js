@@ -57,14 +57,12 @@ class Server {
       } else {
         response.write(result)
       }
-
-      response.end()
     } catch (err) {
       this.logger.error(`${method} ${url}: ${err}`)
       response.statusCode = 500
       response.statusMessage = 'Internal server error'
+    } finally {
       response.end()
-      return
     }
   }
 

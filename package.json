@@ -4,26 +4,23 @@
   "description": "A fast, simple Node HTTP server",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
-    "precommit": "lint-staged"
+    "lint": "eslint .",
+    "test": "jest"
   },
   "author": "Chris Lewis",
   "license": "MIT",
   "engines": {
-    "node": ">= 9.8.0"
+    "node": ">= 11.5.0"
   },
   "devDependencies": {
-    "husky": "^0.14.3",
+    "eslint-plugin-prettier": "^3.0.0",
     "jest": "^22.4.2",
-    "lint-staged": "^7.0.0",
     "node-fetch": "^2.1.1",
     "prettier": "^1.11.1"
   },
   "jest": {
-    "verbose": true
-  },
-  "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
+    "verbose": true,
+    "testURL": "http://localhost"
   },
   "prettier": {
     "tabWidth": 2,
@@ -31,5 +28,8 @@
     "singleQuote": true,
     "trailingComma": "es5",
     "bracketSpacing": false
+  },
+  "dependencies": {
+    "eslint": "^5.11.0"
   }
 }
